@@ -1,6 +1,12 @@
 const EventEmitter = require('events')
 
-const myEmitter = new EventEmitter()
+class Sales extends EventEmitter {
+  constructor() {
+    super()
+  }
+}
+
+const myEmitter = new Sales()
 
 myEmitter.on('newSale', () => {
   console.log('There was a new sale')
@@ -10,4 +16,8 @@ myEmitter.on('newSale', () => {
   console.log('Customer is Imran')
 })
 
-myEmitter.emit('newSale') // Registering or setting up an event
+myEmitter.on('newSale', stock => {
+  console.log(`There are no ${stock} items in the stock`)
+})
+
+myEmitter.emit('newSale', 23) // Registering or setting up an event
